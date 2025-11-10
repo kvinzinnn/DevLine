@@ -1,12 +1,232 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" type="image/png" href="images/favicon-final.png">
-    <title>DevLine</title>
+    <title>Apresentação Tech - Minimalista</title>
+    <style>
+   :root {
+  --bg-color: #000000;
+  --text-color: #00bfff;
+  --accent-color: #1e90ff;
+  --glow-color: rgba(0, 191, 255, 0.5);
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Courier New', monospace;
+  background: var(--bg-color);
+  color: var(--text-color);
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 50px;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(10px);
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+nav a {
+  color: var(--text-color);
+  text-decoration: none;
+  transition: all 0.3s;
+  position: relative;
+}
+
+nav a:hover {
+  color: var(--accent-color);
+}
+
+main {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 50px;
+  padding: 100px 50px;
+  align-items: center;
+  position: relative;
+}
+
+.hero-text h1 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.hero-text h1::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--accent-color);
+  animation: underline 2s ease-in-out 1s forwards;
+}
+
+.typing {
+  border-right: 2px solid var(--text-color);
+  animation: blink 1s infinite;
+}
+
+.tech-button {
+  background: transparent;
+  border: 2px solid var(--accent-color);
+  color: var(--text-color);
+  padding: 10px 20px;
+  font-size: 1rem;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.3s;
+  box-shadow: 0 0 10px var(--glow-color);
+  position: relative;
+  overflow: hidden;
+}
+
+.tech-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, var(--glow-color), transparent);
+  transition: left 0.5s;
+}
+
+.tech-button:hover {
+  color: var(--bg-color);
+  box-shadow: 0 0 20px var(--glow-color);
+  transform: scale(1.05);
+}
+
+.tech-button:hover::before {
+  left: 100%;
+}
+
+.hero-image img {
+  width: 100%;
+  max-width: 400px;
+  filter: drop-shadow(0 0 20px var(--glow-color));
+}
+
+.particles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.particle {
+  position: absolute;
+  background: var(--accent-color);
+  border-radius: 50%;
+  opacity: 0.7;
+  transition: opacity 0.3s;
+}
+
+footer {
+  text-align: center;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.8);
+}
+
+@keyframes underline {
+  to { width: 100%; }
+}
+
+@keyframes blink {
+  0%, 50% { border-color: transparent; }
+  51%, 100% { border-color: var(--text-color); }
+}
+
+@media (max-width: 768px) {
+  main {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+}
+
+    </style>
 </head>
 <body>
-    
+    <header>
+        <h2>TechPort</h2>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">Sobre</a></li>
+                <li><a href="#contact">Contato</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="hero-text">
+            <h1>Bem-vindo ao Futuro <span class="typing">Digital</span></h1>
+            <p>Apresentando soluções inovadoras em tecnologia, com design minimalista e animações avançadas. Explore o que a inovação pode oferecer.</p>
+            <button onclick="alert('Funcionalidade demo!')">Saiba Mais</button>
+        </div>
+        <div class="hero-image">
+            <img src="https://via.placeholder.com/400x300/001122/00bfff?text=Tech+Image" alt="Imagem Tech">
+        </div>
+        <div class="particles" id="particles"></div>
+    </main>
+
+    <footer>
+        <p>&copy; 2023 TechPort. Todos os direitos reservados.</p>
+    </footer>
+
+    <script>
+        const typingElement = document.querySelector('.typing');
+        const text = 'Digital';
+        let index = 0;
+
+        function typeWriter() {
+            if (index < text.length) {
+                typingElement.textContent += text.charAt(index);
+                index++;
+                setTimeout(typeWriter, 150);
+            }
+        }
+        typeWriter();
+
+        const particlesContainer = document.getElementById('particles');
+        for (let i = 0; i < 50; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.width = particle.style.height = Math.random() * 5 + 2 + 'px';
+            particle.style.animationDelay = Math.random() * 6 + 's';
+            particlesContainer.appendChild(particle);
+        }
+
+        window.addEventListener('scroll', () => {
+            const elements = document.querySelectorAll('.hero-text, .hero-image');
+            elements.forEach(el => {
+                const rect = el.getBoundingClientRect();
+                if (rect.top < window.innerHeight) {
+                    el.style.transform = 'translateY(0)';
+                    el.style.opacity = '1';
+                }
+            });
+        });
+    </script>
 </body>
 </html>
