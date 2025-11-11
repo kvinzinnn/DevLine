@@ -1,5 +1,4 @@
-Bem-vindo ao Futuro
-/* Reset e base */
+/* ==================== RESET E BASE ==================== */
 * {
   margin: 0;
   padding: 0;
@@ -14,7 +13,7 @@ body {
   min-height: 100vh;
 }
 
-/* Header */
+/* ==================== HEADER ==================== */
 header {
   position: fixed;
   top: 0;
@@ -23,40 +22,78 @@ header {
   padding: 1rem 2rem;
   z-index: 10;
   animation: fadeIn 1s ease-in;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  box-sizing: border-box;
 }
 
 header h2 {
-  display: inline-block;
-  margin-right: auto;
+  margin: 0;
   color: #00bfff;
+  flex: 0 0 auto;
+  white-space: nowrap;
+  font-size: 1.4rem;
 }
 
+/* Menu */
 nav {
-  float: right;
+  flex: 1 1 0;
+  min-width: 0; /* ESSENCIAL para evitar corte */
+  text-align: right;
 }
 
 nav ul {
   list-style: none;
   margin: 0;
   padding: 0;
+  display: flex;
+  justify-content: flex-end;
+  gap: 1.25rem;
+  min-width: 0;
 }
 
 nav ul li {
-  display: inline-block;
-  margin-left: 1rem;
+  flex: 0 0 auto;
 }
 
 nav ul li a {
   color: #ffffff;
   text-decoration: none;
   transition: color 0.3s;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 12ch;
 }
 
 nav ul li a:hover {
   color: #00bfff;
 }
 
-/* Main */
+/* Evita corte em telas pequenas */
+@media (min-width: 600px) {
+  nav ul li a {
+    max-width: none;
+  }
+}
+
+/* Header responsivo */
+@media (max-width: 480px) {
+  header {
+    padding: 0.8rem 1rem;
+  }
+  nav ul {
+    gap: 0.7rem;
+  }
+  nav ul li a {
+    font-size: 0.95rem;
+    max-width: 9ch; /* mostra "Cont..." se for muito pequeno */
+  }
+}
+
+/* ==================== MAIN ==================== */
 main {
   position: relative;
   min-height: 100vh;
@@ -136,7 +173,7 @@ main {
   box-shadow: 0 0 20px rgba(0, 191, 255, 0.3);
 }
 
-/* Particles */
+/* ==================== PARTICLES ==================== */
 .particles {
   position: absolute;
   top: 0;
@@ -153,18 +190,21 @@ main {
   border-radius: 50%;
 }
 
-/* Footer */
+html {
+  scroll-behavior: smooth;
+}
+
+/* ==================== FOOTER ==================== */
 footer {
   position: fixed;
   bottom: 0;
   width: 100%;
-  background: rgba(0, 17, 34, 0.9);
   text-align: center;
   padding: 0rem;
   animation: fadeIn 1s ease-in 0.5s both;
 }
 
-/* Animações */
+/* ==================== ANIMAÇÕES ==================== */
 @keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
@@ -199,7 +239,7 @@ footer {
   51%, 100% { border-color: transparent; }
 }
 
-/* Seções adicionais */
+/* ==================== SEÇÕES ADICIONAIS ==================== */
 .services, .about, .contact {
   padding: 4rem 2rem;
   text-align: center;
@@ -250,7 +290,7 @@ footer {
   background: #0099cc;
 }
 
-/* Animações de scroll */
+/* ==================== ANIMAÇÕES DE SCROLL ==================== */
 .services {
   animation: slideInUp 1.5s ease-out;
 }
@@ -263,7 +303,7 @@ footer {
   animation: slideInRight 1.5s ease-out;
 }
 
-/* Responsividade */
+/* ==================== RESPONSIVIDADE ==================== */
 @media (max-width: 768px) {
   main {
     flex-direction: column;
