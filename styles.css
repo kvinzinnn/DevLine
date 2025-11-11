@@ -160,7 +160,7 @@ footer {
   width: 100%;
   background: rgba(0, 17, 34, 0.9);
   text-align: center;
-  padding: 1rem;
+  padding: 0rem;
   animation: fadeIn 1s ease-in 0.5s both;
 }
 
