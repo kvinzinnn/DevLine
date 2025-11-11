@@ -29,6 +29,12 @@ header {
   box-sizing: border-box;
 }
 
+
+.logo-container {
+  display: flex;
+  align-items: center;
+}
+
 header h2 {
   margin: 0;
   color: #00bfff;
